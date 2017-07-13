@@ -8,7 +8,6 @@
 	 				'portfolio_style'   	=> 'style1',
 	 				'ppp'   				=> '12',
 	 				'all_text'          	=> 'Show All',
-	 				'pppage' 				=> '999',
 	 				'portfolio_cat_list' 	=> '',
 	 				'filter'            	=> 'all',
  				), $atts 
@@ -25,23 +24,7 @@
 		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; 
 	}
 	
-	/**
-	 * Setup post query
-	 */
-	$query_args = array(
-		'post_type' => 'portfolio',
-		'posts_per_page' => $ppp,
-		//'paged' => $paged,
 
-		'tax_query' => array(
-			array (
-					'taxonomy' => 'portfolio_category',
-					'field' => 'term_id',
-					'terms' => array( $portfolio_cat_list )
-				)
-			)
-	);
-	
 	if (!( $filter == 'all' )) {
 		if( function_exists( 'icl_object_id' ) ){
 			$filter = (int)icl_object_id( $filter, 'portfolio_category', true);
@@ -55,29 +38,91 @@
 		);
 	}
 
-
-
 	if( $filter == 'all' ){
 		$cats = get_categories('taxonomy=portfolio_category');
 	} else {
 		$cats = get_categories('taxonomy=portfolio_category&exclude='. $filter .'&child_of='. $filter);
 	}
 
+
+	if ( isset( $atts['portfolio_cat_list'] ) ) {
+		$portfolio_cat_list = explode( ',', $atts['portfolio_cat_list'] );
+		$portfolio_cat_list = array_map( 'trim', $portfolio_cat_list );
+	} else {
+		$portfolio_cat_list = array();
+	}
+
+	/**
+	 * Setup post query
+	 */
+	$query_args = array(
+		'post_type' => 'portfolio',
+		'posts_per_page' => $ppp,		
+		'include'    => $portfolio_cat_list,
+		//'category__in'    => array( $portfolio_cat_list ),
+		// 'tax_query' => array(
+		// 	//'relation' => 'OR',
+		// 	array (
+		// 			'taxonomy' => 'portfolio_category',
+		// 			'field' => 'term_id',
+		// //			'terms' => array( $portfolio_cat_list )
+		// 		)
+		// 	),
+		'orderby' => 'id',
+		'order' => 'ASC'
+	);
+
+
+
+
+
+	// $query_args = array( 
+	// 	'post_type' => 'portfolio',
+	// 	'posts_per_page' => 12,
+	// 	'include'    => $portfolio_cat_list,
+	// 	// 'tax_query' => array(
+	// 	// 	'relation' => 'AND',
+	// 	// 	array(
+	// 	// 			'taxonomy' => 'portfolio_category',
+	// 	// 			'terms' => array( $portfolio_cat_list ),
+	// 	// 			'field' => 'term_id',
+	// 	// 		)
+	// 	// 	),
+	// 	'orderby' => 'title',
+	// 	'order' => 'ASC' 
+	// );
+
+
+
+
+	
+	//print_r($portfolio_cat_list);
+
+
+	ob_start();
+	
 	
 	$portfolio_query = new WP_Query( $query_args );	
 
+	//print_r($portfolio_query);
+
 	$count_posts = wp_count_posts( 'portfolio' )->publish;
 
-	ob_start();
+	
 
 	if( $portfolio_style == "style1" ){ ?>
 
 	    <div class="portfolio-works">
 	        <ul class="filter right-side">
 	            <li><a class="active" href="#" data-filter="*"><?php echo esc_attr( $all_text ); ?> <span class="count"><?php echo $count_posts;?></span></a></li>            
-	            <?php 
-	            $category = get_terms( 'portfolio_category' );
-	            foreach ($category as $cat) { 
+			 		<?php 
+			 		$args = array(
+				 			'include'    	 => $portfolio_cat_list,				 			
+				 			'post_type'      => 'portfolio',
+				 			'orderby'    	=> 'id',				 			
+			 			);
+			 		$portfolio_categories = get_terms( 'portfolio_category', $args );
+			 		foreach ($portfolio_categories as $cat) { 
 	            	echo '<li><a href="#" data-filter=".'.trim($cat->slug).'">'.$cat->name.'<span class="count">'.$cat->count.'</span></a></li>';
 	            } ?> 
 	        </ul>
@@ -117,7 +162,7 @@
 			        		</div>
 			        	</div><!--/.item-->
 
-			        <?php wp_reset_query(); } }?>
+			        <?php } } wp_reset_postdata(); ?>
 
 	        </div><!--/.portfolio-items-->
 	    </div><!-- /.portfolio-works -->
@@ -128,8 +173,13 @@
 			 	<ul class="filter">
 			 		<li><a class="active" href="#" data-filter="*"><?php echo esc_attr( $all_text ); ?> <span class="count"><?php echo $count_posts;?></span></a></li>
 			 		<?php 
-			 		$category = get_terms( 'portfolio_category' );
-			 		foreach ($category as $cat) { 
+			 		$args = array(
+				 			'include'    	 => $portfolio_cat_list,				 			
+				 			'post_type'      => 'portfolio',
+				 			'orderby'    	=> 'id',				 			
+			 			);
+			 		$portfolio_categories = get_terms( 'portfolio_category', $args );
+			 		foreach ($portfolio_categories as $cat) { 
 			 			echo '<li><a href="#" data-filter=".'.trim($cat->slug).'">'.$cat->name.'<span class="count">'.$cat->count.'</span></a></li>';
 			 		} ?> 
 			 	</ul>
@@ -182,7 +232,7 @@
 					 			</div>
 					 		</div><!--/.item-->
 
-					<?php wp_reset_query(); } }?>
+					<?php } } wp_reset_postdata(); ?>
 
 			 	</div><!--/.portfolio-items-->
 			 </div><!-- /.portfolio-works -->
@@ -194,8 +244,13 @@
 	            <ul class="filter right-side right-side-02">
 			 		<li><a class="active" href="#" data-filter="*"><?php echo esc_attr( $all_text ); ?> <span class="count"><?php echo $count_posts;?></span></a></li>
 			 		<?php 
-			 		$category = get_terms( 'portfolio_category' );
-			 		foreach ($category as $cat) { 
+			 		$args = array(
+				 			'include'    	 => $portfolio_cat_list,				 			
+				 			'post_type'      => 'portfolio',
+				 			'orderby'    	=> 'id',				 			
+			 			);
+			 		$portfolio_categories = get_terms( 'portfolio_category', $args );
+			 		foreach ($portfolio_categories as $cat) { 
 			 			echo '<li><a href="#" data-filter=".'.trim($cat->slug).'">'.$cat->name.'<span class="count">'.$cat->count.'</span></a></li>';
 			 		} ?> 
 	            </ul>
@@ -248,7 +303,7 @@
 			                    </div>
 			                </div><!--/.item-->
 
-			        <?php wp_reset_query(); } } ?>
+			        <?php } } wp_reset_postdata(); ?>
 
 
                 </div><!--/.portfolio-items-->
@@ -295,27 +350,59 @@
 		                    </div><!-- /.item-details -->
 		                </div><!-- /.item -->
 
-		            <?php wp_reset_query(); } } ?>
+		            <?php } } wp_reset_postdata(); ?>
 
 
             </div><!--/.portfolio-items-->
         </div><!-- /.portfolio-works -->
 
-	<?php } elseif( $portfolio_style == "style5" ){ ?>
+	<?php } elseif( $portfolio_style == "style5" ){ 
+		
+		$cat_terms = get_terms(
+		                array('portfolio_category'),
+		                array(
+		                        'hide_empty'    => false,
+		                        'orderby'       => 'id',
+		                        'order'         => 'ASC',
+		                        'include'    	 => $portfolio_cat_list,				 						                        
+		                    )
+		            );
+
+		if( $cat_terms ) {						
+		        $args = array(
+		                'post_type'             => 'portfolio',
+		                'posts_per_page'        => $ppp, //specify yours
+		                'post_status'           => 'publish',
+		                'tax_query'             => array(
+		                                            array(
+		                                                'taxonomy' => 'portfolio_category',
+		                                                'field'    => 'term_id',
+		                                                'terms'    => $portfolio_cat_list,
+		                                            ),
+		                                        ),
+		                'ignore_sticky_posts'   => true //caller_get_posts is deprecated since 3.1
+		            );
+		        $portfolios_query = new WP_Query( $args );
+			?>
 
 			<div class="portfolio-works">
 				<ul class="filter right-side">
 			 		<li><a class="active" href="#" data-filter="*"><?php echo esc_attr( $all_text ); ?> <span class="count"><?php echo $count_posts;?></span></a></li>
 			 		<?php 
-			 		$category = get_terms( 'portfolio_category' );
-			 		foreach ($category as $cat) { 
+			 		$args = array(
+				 			'include'    	 => $portfolio_cat_list,				 			
+				 			'post_type'      => 'portfolio',
+				 			//'orderby'    	=> 'id',				 			
+			 			);
+			 		$portfolio_categories = get_terms( 'portfolio_category', $args );
+			 		foreach ($portfolio_categories as $cat) { 
 			 			echo '<li><a href="#" data-filter=".'.trim($cat->slug).'">'.$cat->name.'<span class="count">'.$cat->count.'</span></a></li>';
 			 		} ?> 
 				</ul>
 
 				<div class="portfolio-items masonry-3column-01">
 
-		            <?php if ( $portfolio_query->have_posts() ) { while ( $portfolio_query->have_posts() ) { $portfolio_query->the_post();
+		            <?php if( $portfolios_query->have_posts() ) { while( $portfolios_query->have_posts() ) { $portfolios_query->the_post();
 
 		                  $terms = wp_get_post_terms( $post->ID, 'portfolio_category', array("fields" => "all"));  
 		                  $item_style = get_post_meta( $post->ID,'_owlfolio_portfolio_style',true );
@@ -361,18 +448,52 @@
 							</div>
 						</div><!--/.item-->
 
-					<?php wp_reset_query(); } } ?>
+					<?php } } wp_reset_postdata(); ?>
+
 
 				</div><!--/.portfolio-items-->
 			</div><!-- /.portfolio-works -->
 
-	<?php } elseif( $portfolio_style == "style6" ){ ?>
+	<?php 	
+		
+		}
+
+
+	} elseif( $portfolio_style == "style6" ){ 
+
+		$cat_terms = get_terms(
+		                array('portfolio_category'),
+		                array(
+		                        'hide_empty'    => false,
+		                        'orderby'       => 'id',
+		                        'order'         => 'ASC',
+		                        'include'    	 => $portfolio_cat_list,				 						                        
+		                    )
+		            );
+
+		if( $cat_terms ) {						
+		        $args = array(
+		                'post_type'             => 'portfolio',
+		                'posts_per_page'        => $ppp, //specify yours
+		                'post_status'           => 'publish',
+		                'tax_query'             => array(
+		                                            array(
+		                                                'taxonomy' => 'portfolio_category',
+		                                                'field'    => 'term_id',
+		                                                'terms'    => $portfolio_cat_list,
+		                                            ),
+		                                        ),
+		                'ignore_sticky_posts'   => true //caller_get_posts is deprecated since 3.1
+		            );
+		        $portfolios_query = new WP_Query( $args );
+			?>
+
 
 	        <div class="portfolio-works">
 
 	            <div class="portfolio-items full-width">
 
-		            <?php if ( $portfolio_query->have_posts() ) { while ( $portfolio_query->have_posts() ) { $portfolio_query->the_post();
+		            <?php if( $portfolios_query->have_posts() ) { while( $portfolios_query->have_posts() ) { $portfolios_query->the_post();
 
 		                  $terms = wp_get_post_terms( $post->ID, 'portfolio_category', array("fields" => "all"));  
 		                  $item_style = get_post_meta( $post->ID,'_owlfolio_portfolio_style',true );
@@ -406,11 +527,13 @@
 			                    </div>
 			                </div><!--/.item-->
 
-			        <?php wp_reset_query(); } } ?>
+			        <?php } } wp_reset_postdata(); ?>
 
 	            </div><!-- /.portfolio-works -->
 	        </div><!-- /.portfolio-works -->
-	<?php } ?>
+	<?php }
+
+	} ?>
 
 
 
@@ -456,8 +579,8 @@ function kc_owlfolio_works_params() {
 			                		'style2' => esc_html__( 'Masonry with Gap', 'jt-essential' ),
 			                		'style3' => esc_html__( 'Masonry No-Gap', 'jt-essential' ),
 			                		'style4' => esc_html__( 'Fluid Style', 'jt-essential' ),
-			                		'style5' => esc_html__( 'Fullscreen Video Background', 'jt-essential' ),
-			                		'style6' => esc_html__( 'Slanted Subtle Carousel', 'jt-essential' ),			                		
+			                		'style5' => esc_html__( 'Masonry Grid', 'jt-essential' ),
+			                		'style6' => esc_html__( 'Banner List', 'jt-essential' ),			                		
 			                	),
 		                ),
 

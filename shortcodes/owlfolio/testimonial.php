@@ -74,7 +74,7 @@ function kc_owlfolio_testimonial_params() {
 		array(	
 	            
 	        'owlfolio_testimonial' => array(
-	            	"icon" => 'fa fa-briefcase',
+	            	"icon" => 'fa fa-quote-left',
 	        		"name" => esc_html__("Block: Testimonial", 'js-essential'),
 	        		'description' => esc_html__( 'Show Testimonial Block.', 'jt-essential' ) ,
 	            	'category' => esc_html__( 'Owlfolio', 'jt-essential' ) ,

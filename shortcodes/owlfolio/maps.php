@@ -80,7 +80,7 @@ function kc_owlfolio_google_maps_params() {
 		array(	
 	            
 	        'owlfolio_google_maps' => array(
-	            	"icon" => 'fa fa-indent',
+	            	"icon" => 'fa fa-map-marker',
 	        		"name" => __("Block: Google Maps", 'jt-essential'),
 	        		'description' => 'Google Maps Location',	            	
 	            	'category' => 'Owlfolio',

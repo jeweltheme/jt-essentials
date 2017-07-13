@@ -55,7 +55,7 @@ function kc_owlfolio_client_logos_params() {
 		array(	
 	            
 	        'owlfolio_client_logos' => array(
-	            	"icon" => 'fa fa-briefcase',
+	            	"icon" => 'fa fa-user',
 	        		"name" => esc_html__("Block: Client Logos", 'js-essential'),
 	        		'description' => 'Select Images for Clients',	            	
 	            	'category' => esc_html__( 'Owlfolio', 'jt-essential' ) ,

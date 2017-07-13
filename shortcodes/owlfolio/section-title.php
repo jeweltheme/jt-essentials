@@ -61,7 +61,7 @@ function kc_owlfolio_section_title_params() {
 		array(	
 	            
 	        'owlfolio_section_title' => array(
-	            	"icon" => 'fa fa-indent',
+	            	"icon" => 'fa fa-header',
 	        		"name" => __("Block: Section Title", 'jt-essential'),
 	        		'description' => 'Section Title and Subtitle here.',	            	
 	            	'category' => 'Owlfolio',

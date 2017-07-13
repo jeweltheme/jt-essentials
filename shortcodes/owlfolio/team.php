@@ -119,7 +119,7 @@ function kc_owlfolio_team_params() {
 		array(	
 	            
 	        'owlfolio_team' => array(
-	            	"icon" => 'fa fa-briefcase',
+	            	"icon" => 'fa fa-users',
 	        		"name" => esc_html__("Block: Team", 'js-essential'),
 	        		'description' => 'Show Team Block.',	            	
 	            	'category' => esc_html__( 'Owlfolio', 'jt-essential' ) ,

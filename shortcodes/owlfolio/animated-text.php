@@ -33,7 +33,7 @@ function kc_owlfolio_animated_text_params() {
 		array(	
 	            
 	        'owlfolio_animated_text' => array(
-	            	"icon" => 'fa fa-indent',
+	            	"icon" => 'fa fa-align-center',
 	        		"name" => __("Block: Animated Text", 'jt-essential'),
 	        		'description' => 'Animated Text.',	            	
 	            	'category' => 'Owlfolio',
