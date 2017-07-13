@@ -126,13 +126,16 @@ if( '1' == $jeweltheme_options['victor_shortcode_blocks'] ){
 
 
 // Victor Shortcodes
-if( '1' == $jeweltheme_options['owlfolio_shortcode_blocks'] ){
-	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/section-title.php' );
-	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/maps.php' );
-	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/animated-text.php' );
-	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/services.php' );
-	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/team.php' );
-	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/client-logos.php' );
-	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/portfolio.php' );
-	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/testimonial.php' );
+if( '1' == $jeweltheme_options['owlfolio_shortcode_blocks'] ){	
+		if ( is_plugin_active( "kingcomposer/kingcomposer.php" ) ){
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/section-title.php' );
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/maps.php' );
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/animated-text.php' );
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/services.php' );
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/team.php' );
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/client-logos.php' );
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/portfolio.php' );
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/testimonial.php' );
+			require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/blog.php' );			
+		}
 }
