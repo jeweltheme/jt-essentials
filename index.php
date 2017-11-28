@@ -2,12 +2,12 @@
 /*
 Plugin Name: Jewel Theme Essential
 Plugin URI: https://github.com/jeweltheme/
-Description: Jewel Theme Essential - WordPress Plugin for Victore WordPress Theme
+Description: Jewel Theme Essential - WordPress Plugin for WordPress Themes
 Version: 1.0.0
 Author: Jewel Theme
 Text Domain: js-essential
 Author URI: https://www.jeweltheme.com
-*/	
+*/
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
