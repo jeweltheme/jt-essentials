@@ -135,26 +135,36 @@ if( '1' == $jeweltheme_options['victor_shortcode_blocks'] ){
 
 // Owlfolio Shortcodes
 if( '1' == $jeweltheme_options['owlfolio_shortcode_blocks'] ){
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/section-title.php' );
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/maps.php' );
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/animated-text.php' );
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/services.php' );
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/team.php' );
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/client-logos.php' );
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/portfolio.php' );
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/testimonial.php' );
-		require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/blog.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/section-title.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/maps.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/animated-text.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/services.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/team.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/client-logos.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/portfolio.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/testimonial.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/owlfolio/blog.php' );
 }
 
 // AA WP Shortcodes
 if( '1' == $jeweltheme_options['aa_shortcode_blocks'] ){
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/section-title.php' );
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/maps.php' );
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/animated-text.php' );
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/services.php' );
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/team.php' );
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/client-logos.php' );
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/portfolio.php' );
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/testimonial.php' );
-		// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/blog.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/section-title.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/maps.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/contact-details.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/pricing.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/quotes.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/about_content.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/features.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/counter.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/skills.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/banner.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/blog.php' );
+
+	// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/animated-text.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/services.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/team.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/client-logos.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/portfolio.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/testimonial.php' );
+	// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/blog.php' );
 }

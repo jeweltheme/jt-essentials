@@ -1,13 +1,13 @@
 <?php
 
  function kc_owlfolio_blog( $atts ){
- 	
- 	extract( 
- 		shortcode_atts( 
- 			array(	 				
-	 				'ppp' 			=> '3'	 				
- 				), $atts 
- 			) 
+
+ 	extract(
+ 		shortcode_atts(
+ 			array(
+	 				'ppp' 			=> '3'
+ 				), $atts
+ 			)
  		);
 
 	ob_start();
@@ -15,10 +15,10 @@
 	global $post;
 
 	// Fix for pagination
-	if( is_front_page() ) { 
-		$paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1; 
-	} else { 
-		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; 
+	if( is_front_page() ) {
+		$paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
+	} else {
+		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	}
 
 	$query_args = array(
@@ -27,20 +27,20 @@
 		'posts_per_page' => $ppp,
 		'paged' => $paged
 	);
-	
+
 	$blog_query = new WP_Query( $query_args );
 	?>
 
 
 	   <div class="blog-posts">
-	   
+
   			<?php
-  				if ( have_posts() ) { while ( have_posts() ) { the_post(); 
+  				if ( $blog_query->have_posts() ) { $blog_query->while ( have_posts() ) { $blog_query->the_post();
   						get_template_part( 'template-parts/content');
-  				} } else { 
-  					get_template_part( 'template-parts/content', 'none' ); 
+  				} } else {
+  					get_template_part( 'template-parts/content', 'none' );
   				}
-  				
+
   				echo function_exists('owlfolio_pagination') ? owlfolio_pagination() : posts_nav_link();
   			?>
 
@@ -49,7 +49,7 @@
 
 
 
-    <?php 
+    <?php
 
 
 	$output = ob_get_contents();
@@ -60,7 +60,7 @@
 
 add_shortcode( 'owlfolio_blog', 'kc_owlfolio_blog' );
 
- 
+
 function kc_owlfolio_blog_params() {
  	    kc_add_map(
 	        array(
@@ -77,17 +77,17 @@ function kc_owlfolio_blog_params() {
 	                		'type'  => 'text',
 	                		'value'  => '3',
 	                	),
-	                	
+
 
 	                )
-	            ),  // End of elemnt owlfolio_blog 
+	            ),  // End of elemnt owlfolio_blog
 
 	        )
 	    ); // End add map
 
 
 
-}  
+}
 
 add_action('init', 'kc_owlfolio_blog_params', 99 );
 

@@ -1,26 +1,26 @@
 <?php
 
  function kc_owlfolio_sevices( $atts ){
- 	
- 	extract( 
- 		shortcode_atts( 
- 			array(	
+
+ 	extract(
+ 		shortcode_atts(
+ 			array(
 	 				'service_title' 		=>  esc_html__( 'What We do', 'jt-essential' ),
 	 				'service_content' 		=>  esc_html__( 'We focused on emotional connection to build commerce with culture and business through the brand. The process focused on winning together by working together.', 'jt-essential' ),
 	 				'service_icon' 			=>  'ti-ruler-pencil',
 	 				'service_options' 		=>  '',
- 				), $atts 
- 			) 
+ 				), $atts
+ 			)
  		);
 
-	ob_start();	
+	ob_start();
 
 	?>
 
 
 		<div class="about-items">
-          	
-          	<?php foreach ($service_options as $value) { ?>	              		
+
+          	<?php foreach ($service_options as $value) { ?>
 		            <div class="item col-sm-4 media">
 		                <div class="item-icon media-left"><i class="<?php echo $value->service_icon;?>"></i></div><!-- /.item-icon -->
 		                <div class="item-details media-body">
@@ -29,12 +29,12 @@
 		                        <?php echo $value->service_content;?>
 		                    </p>
 		                </div><!-- /.item-details -->
-		            </div><!-- /.item -->              		
+		            </div><!-- /.item -->
           	<?php } ?>
 
          </div>
 
-<?php 
+<?php
 
 	$output = ob_get_contents();
 
@@ -45,23 +45,22 @@
 
 add_shortcode( 'owlfolio_sevices', 'kc_owlfolio_sevices' );
 
- 
+
 function kc_owlfolio_sevices_params() {
 
 	if( function_exists( 'kc_add_icon' ) ) {
 		kc_add_icon( get_template_directory_uri().'/assets/css/themify-icons.css' );
-		//wp_enqueue_style( 'themify-icons', OWLFOLIO_CSS . "themify-icons.css" );
 	}
 
 	kc_add_map(
-		array(	
+		array(
 
 		'owlfolio_sevices' => array(
-			'name' => esc_html__('Block: Service', 'jt-essential'),			
+			'name' => esc_html__('Block: Service', 'jt-essential'),
 			'category' => esc_html__( 'Owlfolio', 'jt-essential' ) ,
 			'icon' => 'kc-icon-accordion',
-			'title' => esc_html__('Service Settings', 'jt-essential'),			
-			'params' => array(	
+			'title' => esc_html__('Service Settings', 'jt-essential'),
+			'params' => array(
 
 
 				array(
@@ -104,7 +103,7 @@ function kc_owlfolio_sevices_params() {
 							array(
 								'name' => 'service_icon',
 								'label' => esc_html__('Service Icon', 'jt-essential'),
-								'type' => 'icon_picker'						
+								'type' => 'icon_picker'
 							)
 
 						),
@@ -117,8 +116,8 @@ function kc_owlfolio_sevices_params() {
 			),
 
 
-	        
-		) 
+
+		)
 	);
 }
 

@@ -1,20 +1,20 @@
 <?php
 
  function kc_victor_counter( $atts ){
- 	
- 	extract( 
- 		shortcode_atts( 
+
+ 	extract(
+ 		shortcode_atts(
  			array(
 	 				'counter_style' 		=> 'style1',
 	 				'title' 			=> 'The Latest',
 	 				'subtitle' 			=> 'News &amp; updates',
-	 				'bg_image' 			=>  get_template_directory_uri() . '/images/bg/04.jpg',	 				
+	 				'bg_image' 			=>  get_template_directory_uri() . '/images/bg/04.jpg',
 	 				'coutner_part' 			=> 'designer',
- 				), $atts 
- 			) 
+ 				), $atts
+ 			)
  		);
 
-	ob_start();	
+	ob_start();
 	$bg_image = wp_get_attachment_image_src( $bg_image, 'full');
 	?>
 
@@ -24,14 +24,13 @@
 
 <?php if( $counter_style == "style1" ){ ?>
 
- 
+
     <div class="highlights-section pad-top pad-bottom overlay-black">
       <div class="container">
             <div class="row add-top add-bottom">
-            	
-            	<?php 
-            	foreach ($coutner_part as $value) { 
-            		if( !empty($value->label) || !empty($value->value)  ){ ?>            		
+
+            	<?php foreach ($coutner_part as $value) {
+            		if( !empty($value->label) || !empty($value->value)  ){ ?>
 	            		<div class="col-md-4 text-center intro">
 	            			<h1 class="white font1 font-bold count-number"><?php echo $value->value;?></h1>
 	            			<h3 class="white font1 font-light"><?php echo $value->label;?></h3>
@@ -48,9 +47,9 @@
     <div class="highlights-section pad-top pad-bottom white-bg">
       <div class="container">
             <div class="row add-top add-bottom">
-                
-                <?php foreach ($coutner_part as $value) { 
-            		if( !empty($value->label) || !empty($value->value)  ){ ?>            		
+
+                <?php foreach ($coutner_part as $value) {
+            		if( !empty($value->label) || !empty($value->value)  ){ ?>
 
 	            		<div class="col-md-4 text-center intro">
 	            			<h1 class="black font1 font-bold count-number"><?php echo $value->value;?></h1>
@@ -70,15 +69,15 @@
 	    <script>
 	      jQuery(window).load(function() {
 	        //BG IMAGES for this page header
-	          jQuery(".highlights-section").backstretch([	          		
-	              		"<?php echo $bg_image[0];?>"						
+	          jQuery(".highlights-section").backstretch([
+	              		"<?php echo $bg_image[0];?>"
 	          ], {duration: 3000, fade: 750});
 	      });
 	    </script>
 <?php } ?>
 
 
-    <?php 
+    <?php
 
 	$output = ob_get_contents();
 	ob_end_clean();
@@ -88,15 +87,15 @@
 
 add_shortcode( 'victor_counter', 'kc_victor_counter' );
 
- 
+
 function kc_victor_counter_params() {
 	kc_add_map(
-		array(	
-	            
+		array(
+
 	        'victor_counter' => array(
 	            	"icon" => 'fa fa-clock-o',
 	        		"name" => __("Section: Counter", 'js-essential'),
-	        		'description' => 'Show Counter Section.',	            	
+	        		'description' => 'Show Counter Section.',
 	            	'category' => 'Victor',
 	            	"params" => array(
 
@@ -114,10 +113,10 @@ function kc_victor_counter_params() {
 
 						array(
 							'type'			=> 'group',
-							'label'			=> __(' Options', 'kingcomposer'),
+							'label'			=> __(' Options', 'js-essential'),
 							'name'			=> 'coutner_part',
-							'description'	=> __( 'Repeat this fields with each item created, Each item corresponding processbar element.', 'kingcomposer' ),
-							'options'		=> array('add_text' => __(' Add new progress bar', 'kingcomposer')),
+							'description'	=> __( 'Repeat this fields with each item created, Each item corresponding processbar element.', 'js-essential' ),
+							'options'		=> array('add_text' => __(' Add New Progress Bar', 'js-essential')),
 							'relation'      => array(
 								'parent'    => 'counter_style',
 								'show_when' => array( 'style1', 'style2' )
@@ -140,22 +139,22 @@ function kc_victor_counter_params() {
 							'params' => array(
 								array(
 									'type' => 'text',
-									'label' => __( 'Counter Title', 'kingcomposer' ),
+									'label' => __( 'Counter Title', 'js-essential' ),
 									'name' => 'label',
-									'description' => __( 'Enter text used as title of the bar.', 'kingcomposer' ),
+									'description' => __( 'Enter text used as title of the bar.', 'js-essential' ),
 									'admin_label' => true,
 								),
 								array(
 									'type' => 'text',
-									'label' => __( 'Counter Value', 'kingcomposer' ),
+									'label' => __( 'Counter Value', 'js-essential' ),
 									'name' => 'value',
-									'description' => __( 'Enter targeted value of the bar (From 1 to 100).', 'kingcomposer' ),
+									'description' => __( 'Enter targeted value of the bar (From 1 to 100).', 'js-essential' ),
 									'admin_label' => true,
 									'value' => '80'
 								),
 
 							),
-						),			            
+						),
 
 	                	array(
 	                		'name' => 'bg_image',
@@ -175,13 +174,13 @@ function kc_victor_counter_params() {
 
 
 	                )
-	                
 
 
-	            ),  // End of elemnt victor_counter 
 
-	        
-		) 
+	            ),  // End of elemnt victor_counter
+
+
+		)
 	);
 }
 

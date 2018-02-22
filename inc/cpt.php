@@ -538,7 +538,7 @@ function jeweltheme_essentials_register_services() {
 		'labels' => $labels,
 		'hierarchical' => false,
 		'description' => __('Service entries for the candor Theme.', 'candor'),
-		'supports' => array( 'title', 'thumbnail'),
+		'supports' => array( 'title', 'editor', 'thumbnail'),
 		'public' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,

@@ -1,14 +1,14 @@
 <?php
 
  function kc_owlfolio_testimonial( $atts ){
- 	
- 	extract( 
- 		shortcode_atts( 
+
+ 	extract(
+ 		shortcode_atts(
  			array(
-	 				'ppp'   			=> '4',	 				
+	 				'ppp'   			=> '4',
 	 				'filter'            => 'all',
- 				), $atts 
- 			) 
+ 				), $atts
+ 			)
  		);
 
  	global $post;
@@ -26,7 +26,7 @@
 				$testimonials = new WP_Query( $query_args );
 
 				$j=0;
-				if ( $testimonials->have_posts() ) { while ( $testimonials->have_posts() ) { $testimonials->the_post();                                                 
+				if ( $testimonials->have_posts() ) { while ( $testimonials->have_posts() ) { $testimonials->the_post();
 
 					$testimonial_client_name        = owlfolio_meta( '_owlfolio_testimonial_client_name' );
 					$testimonial_client_designation = owlfolio_meta( '_owlfolio_testimonial_client_designation' );
@@ -35,7 +35,7 @@
 					$testimonial_client_url         = owlfolio_meta( '_owlfolio_testimonial_client_url' );
 
 
-					$testimonial_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), array( 120, 120 )) ; 
+					$testimonial_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), array( 120, 120 )) ;
 					?>
 
 						<div class="item <?php echo ($j==0) ? "active" :"";?>">
@@ -58,7 +58,7 @@
 
 
 
-    <?php 
+    <?php
 
 	$output = ob_get_contents();
 	ob_end_clean();
@@ -68,11 +68,11 @@
 
 add_shortcode( 'owlfolio_testimonial', 'kc_owlfolio_testimonial' );
 
- 
+
 function kc_owlfolio_testimonial_params() {
 	kc_add_map(
-		array(	
-	            
+		array(
+
 	        'owlfolio_testimonial' => array(
 	            	"icon" => 'fa fa-quote-left',
 	        		"name" => esc_html__("Block: Testimonial", 'js-essential'),
@@ -88,13 +88,13 @@ function kc_owlfolio_testimonial_params() {
 	                	),
 
 	                )
-	                
 
 
-	            ),  // End of elemnt owlfolio_testimonial 
 
-	        
-		) 
+	            ),  // End of elemnt owlfolio_testimonial
+
+
+		)
 	);
 }
 

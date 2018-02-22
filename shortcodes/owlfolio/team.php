@@ -1,18 +1,18 @@
 <?php
 
  function kc_owlfolio_team( $atts ){
- 	
- 	extract( 
- 		shortcode_atts( 
+
+ 	extract(
+ 		shortcode_atts(
  			array(
-	 				'ppp'   			=> '4',	 				
+	 				'ppp'   			=> '4',
 	 				'filter'            => 'all',
- 				), $atts 
- 			) 
+ 				), $atts
+ 			)
  		);
 
  	global $post;
-	  
+
 	  /**
 	   * Setup post query
 	   */
@@ -20,7 +20,7 @@
 	    'post_type'     => 'team',
 	    'posts_per_page'  => $ppp
 	  );
-	  
+
 	  if (!( $filter == 'all' )) {
 	    if( function_exists( 'icl_object_id' ) ){
 	      $filter = (int)icl_object_id( $filter, 'team_category', true);
@@ -44,10 +44,10 @@
 
         <?php
           $team = js_essential_get_custom_posts("team", $ppp);
-          foreach ($team as $post) {              
+          foreach ($team as $post) {
               setup_postdata($post);
-              $terms = wp_get_post_terms( $post->ID, 'team_category', array("fields" => "all"));                
-              
+              $terms = wp_get_post_terms( $post->ID, 'team_category', array("fields" => "all"));
+
               $team_member_name = owlfolio_meta( '_owlfolio_team_member_name' );
               $team_member_designation = owlfolio_meta( '_owlfolio_team_member_designation' );
               $team_desc = owlfolio_meta( '_owlfolio_team_desc' );
@@ -61,10 +61,10 @@
 
               $url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'owlfolio_team_thumb' );
 
-              $t = array();                    
+              $t = array();
               foreach($terms as $term)
                   $t[] = $term->slug;
-              ?>	
+              ?>
 
 				<div class="member col-md-3 col-xs-6">
 					<div class="member-avatar">
@@ -85,9 +85,9 @@
 								<?php } if( $social_instagram ){ ?>
 									<a href="<?php echo esc_url_raw( $social_instagram );?>"><i class="fa fa-instagram"></i></a>
 								<?php } if( $social_email ){ ?>
-									<a href="<?php echo esc_url_raw( $social_email );?>"><i class="fa fa-envelope-o"></i></a>									
+									<a href="<?php echo esc_url_raw( $social_email );?>"><i class="fa fa-envelope-o"></i></a>
 								<?php } ?>
-								
+
 							</div><!-- /.member-social -->
 						</div><!-- /.hover-content -->
 					</div><!-- /.member-avatar -->
@@ -96,14 +96,14 @@
 						<span class="designation"><?php echo esc_attr( $team_member_designation );?></span><!-- /.designation -->
 					</div><!-- /.member-details -->
 				</div><!-- /.member -->
-			
+
 			<?php } ?>
 
 	</div><!-- /.our-team -->
 
 
 
-    <?php 
+    <?php
 
 	$output = ob_get_contents();
 	ob_end_clean();
@@ -113,15 +113,15 @@
 
 add_shortcode( 'owlfolio_team', 'kc_owlfolio_team' );
 
- 
+
 function kc_owlfolio_team_params() {
 	kc_add_map(
-		array(	
-	            
+		array(
+
 	        'owlfolio_team' => array(
 	            	"icon" => 'fa fa-users',
 	        		"name" => esc_html__("Block: Team", 'js-essential'),
-	        		'description' => 'Show Team Block.',	            	
+	        		'description' => 'Show Team Block.',
 	            	'category' => esc_html__( 'Owlfolio', 'jt-essential' ) ,
 	            	"params" => array(
 	                	array(
@@ -133,13 +133,13 @@ function kc_owlfolio_team_params() {
 	                	),
 
 	                )
-	                
 
 
-	            ),  // End of elemnt owlfolio_team 
 
-	        
-		) 
+	            ),  // End of elemnt owlfolio_team
+
+
+		)
 	);
 }
 
