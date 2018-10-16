@@ -28,6 +28,10 @@ $defaults = array(
 	'aa_shortcode_blocks' 	=> '0',
 	'aa_shortcodes' 	  	=> '0',
 
+	// Bronx WP
+	'bronx_shortcode_blocks' 	=> '0',
+	'bronx_shortcodes' 	  		=> '0',
+
 );
 
 $jeweltheme_options = wp_parse_args( get_option('jeweltheme_options'), $defaults);
@@ -94,6 +98,12 @@ if( '1' == $jeweltheme_options['owlfolio_shortcodes'] ){
 if( '1' == $jeweltheme_options['aa_shortcodes'] ){
 	require_once( JEWELTHEME_ESSENTIAL_PATH . 'themes/aa-wp.php' );
 }
+
+
+if( '1' == $jeweltheme_options['bronx_shortcodes'] ){
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'themes/bronx-wp.php' );
+}
+
 
 /*
 * RWMB Metabox
@@ -167,4 +177,13 @@ if( '1' == $jeweltheme_options['aa_shortcode_blocks'] ){
 	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/portfolio.php' );
 	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/testimonial.php' );
 	// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/aa/blog.php' );
+}
+
+
+// Bronx Shortcodes
+
+
+// AA WP Shortcodes
+if( '1' == $jeweltheme_options['bronx_shortcode_blocks'] ){
+	// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/bronx/section-title.php' );
 }
