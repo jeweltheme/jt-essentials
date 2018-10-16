@@ -182,8 +182,10 @@ if( '1' == $jeweltheme_options['aa_shortcode_blocks'] ){
 
 // Bronx Shortcodes
 
-
-// AA WP Shortcodes
-if( '1' == $jeweltheme_options['bronx_shortcode_blocks'] ){
-	// require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/bronx/section-title.php' );
+if( '1' == $jeweltheme_options['bronx_shortcode_blocks'] ){	
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/bronx/blog.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/bronx/counter.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/bronx/client-logos.php' );
+	require_once( JEWELTHEME_ESSENTIAL_PATH . 'shortcodes/bronx/portfolio.php' );
+	
 }
